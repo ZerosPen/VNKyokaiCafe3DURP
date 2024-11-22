@@ -13,6 +13,7 @@ namespace DIALOGUE
         public DialogContainer DialogContainer = new DialogContainer(); // Reference to DialogContainer
         private ConversationManager conversationManager;
         private TextArchitech TxtArch;
+        private AutoReader autoReader;
         [SerializeField] private CanvasGroup mainCanvas;
 
         public static DialogController Instance { get; private set; } // Singleton instance
@@ -49,8 +50,10 @@ namespace DIALOGUE
             conversationManager = new ConversationManager(TxtArch);
 
             cgController = new CanvasGroupController(this, mainCanvas); 
-            
-            DialogContainer.Initialized();  
+            DialogContainer.Initialized();
+
+            if (TryGetComponent(out autoReader))
+                autoReader.Initialized(conversationManager);
         }
 
         public void OnUserPromt_Next()

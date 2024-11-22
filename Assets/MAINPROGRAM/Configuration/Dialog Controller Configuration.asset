@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6862da19078324a49bef04ead052832a, type: 3}
   m_Name: Dialog Controller Configuration
   m_EditorClassIdentifier: 
-  characterConfigationAsset: {fileID: 11400000, guid: 7afdbad75b4381a4da8e285bfc11193a, type: 2}
+  characterConfigationAsset: {fileID: 11400000, guid: 7afdbad75b4381a4da8e285bfc11193a,
+    type: 2}
   defaultTextColour: {r: 1, g: 1, b: 1, a: 1}
-  defaulFont: {fileID: 0}
+  defaulFont: {fileID: 11400000, guid: 3e7edacc55134294295894617ab4336e, type: 2}
+  dialogueFontScale: 1
+  defaultFontSize: 5
+  defaultNameFontSize: 18

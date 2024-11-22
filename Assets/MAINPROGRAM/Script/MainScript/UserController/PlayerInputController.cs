@@ -1,27 +1,43 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace DIALOGUE
 {
     public class PlayerInputManager : MonoBehaviour
     {
+        private PlayerInput input;
+
+        private List<(InputAction action, Action<InputAction.CallbackContext> command)> actions = new List<(InputAction action, Action<InputAction.CallbackContext> command)>();
+
         // Start is called before the first frame update
-        void Start()
+        private void Awake()
         {
+            input = GetComponent<PlayerInput>();
 
+            InitializeAction();
         }
 
-        // Update is called once per frame
-        void Update()
+        private void InitializeAction()
         {
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
-            {
-                PromtAdvence();
-            }
+            actions.Add((input.actions["Next"], OnNext));
         }
 
-        public void PromtAdvence()
+        private void OnEnable()
+        {
+            foreach (var inputAction in actions)
+                inputAction.action.performed += inputAction.command;
+        }
+
+        private void OnDisable()
+        {
+            foreach (var inputAction in actions)
+                inputAction.action.performed -= inputAction.command;
+        }
+
+        public void OnNext(InputAction.CallbackContext c)
         {
             DialogController.Instance.OnUserPromt_Next();
         }

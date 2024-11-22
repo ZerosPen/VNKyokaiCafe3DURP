@@ -12,12 +12,16 @@ namespace DIALOGUE
         private Coroutine process = null;
         public bool isRunning => process != null;
 
-        private TextArchitech TxtArch = null;
+        public  TextArchitech TxtArch = null;
         private bool UserPromt = false;
+
+        private TagManager tagManager;
         public ConversationManager(TextArchitech TxtArch)
         {
             this.TxtArch = TxtArch;
             dialogController.onUserPrompt_Next += OnUserPromt_Next;
+
+            tagManager = new TagManager();
         }
 
         private void OnUserPromt_Next()
@@ -100,8 +104,8 @@ namespace DIALOGUE
                 character.Show();
             }
 
-            // Display the speaker's name in the dialog
-            dialogController.showSpeakerName(speakerData.displayName);
+            // Display the speaker's name in the dialogue
+            dialogController.showSpeakerName(tagManager.Inject (speakerData.displayName));
 
             DialogController.Instance.ApplySpeakerDataToDialogContainer(speakerData.name);
 
@@ -176,6 +180,9 @@ namespace DIALOGUE
 
         IEnumerator BuildDialogue(string dailogue, bool Append = false)
         {
+
+            dailogue = tagManager.Inject(dailogue);
+
             if (!Append)
                 TxtArch.Build(dailogue);
             else

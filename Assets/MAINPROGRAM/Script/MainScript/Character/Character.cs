@@ -75,7 +75,7 @@ namespace Characters
         public void SetNameColor(Color color) => config.nameColor = color;
         public void SetDialogueColor(Color color) => config.dialogueColor = color;
 
-        public void ResetConfiguratioData() => config = CharacterManager.Instance.GetCharacterConfig(name);
+        public void ResetConfiguratioData() => config = CharacterManager.Instance.GetCharacterConfig(name, getOriginal: true);
 
         public void UpdateTextCostumizationOnScreen() => dialogController.ApplySpeakerDataToDialogContainer(config);
 
