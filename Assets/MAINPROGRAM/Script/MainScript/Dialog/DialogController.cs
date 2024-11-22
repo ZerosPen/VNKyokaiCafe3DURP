@@ -13,6 +13,7 @@ namespace DIALOGUE
         public DialogContainer DialogContainer = new DialogContainer(); // Reference to DialogContainer
         private ConversationManager conversationManager;
         private TextArchitech TxtArch;
+        [SerializeField] private CanvasGroup mainCanvas;
 
         public static DialogController Instance { get; private set; } // Singleton instance
 
@@ -20,6 +21,9 @@ namespace DIALOGUE
         public event DialogueControllerEvent onUserPrompt_Next;
 
         public bool IsRunningConversation => conversationManager.isRunning; // Property for checking conversation status
+
+        public DialogeuContinuePromt promt;
+        private CanvasGroupController cgController;
 
         private void Awake() // Singleton initialization
         {
@@ -43,6 +47,10 @@ namespace DIALOGUE
 
             TxtArch = new TextArchitech(DialogContainer.DialogText);
             conversationManager = new ConversationManager(TxtArch);
+
+            cgController = new CanvasGroupController(this, mainCanvas); 
+            
+            DialogContainer.Initialized();  
         }
 
         public void OnUserPromt_Next()
@@ -62,8 +70,13 @@ namespace DIALOGUE
         {
             DialogContainer.SetDialogueColor(config.dialogueColor);
             DialogContainer.SetDialogueFont(config.dialogueFont);
+            float fontSize = this.config.defaultFontSize * this.config.defaultFontSize * config.DialogueFontScale;
+            DialogContainer.SetDialogueFontSize(fontSize);
+
             DialogContainer.nameContainer.SetNameColor(config.nameColor);
             DialogContainer.nameContainer.SetNameFont(config.nameFont);
+            fontSize = this.config.defaultNameFontSize * config.FontNameScale;
+            DialogContainer.nameContainer.SetNameFontSize(fontSize);
         }
 
         public void showSpeakerName(string speakerName = "") 
@@ -87,5 +100,10 @@ namespace DIALOGUE
         {
             return conversationManager.startConversation(conversation);
         }
+
+        public bool isVisible =>cgController.isVisible;
+
+        public Coroutine Show(float speed, bool immadiate = false) => cgController.Show(speed, immadiate);
+        public Coroutine Hide(float speed, bool immadiate = false) => cgController.Hide(speed, immadiate);
     }
 }

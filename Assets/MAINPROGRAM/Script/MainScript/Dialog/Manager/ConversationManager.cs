@@ -63,10 +63,12 @@ namespace DIALOGUE
                     yield return Line_RunCommands(line);
                 }
 
+                //wait for user input if dialogue has  in this line
                 if(line.hasDialogue)
                 {
                     //wiat for userInput
                     yield return WaitForUserInput();
+                            
                     CommandManager.Instance.StopAllProcesses();
                 }
             }
@@ -76,6 +78,9 @@ namespace DIALOGUE
             //show or hide char name
             if (line.hasSpeaker)
                 handleSpeakLogic(line.speakerData);
+
+            if(!dialogController.DialogContainer.isVisible)
+                dialogController.DialogContainer.Show(1f, true);
 
             //build dailog
             yield return BuildLineSegments(line.dialogueData);
@@ -193,10 +198,15 @@ namespace DIALOGUE
 
         IEnumerator WaitForUserInput()
         {
+            dialogController.promt.Show();
+
             while (!UserPromt)
             {
                 yield return null;
             }
+
+            dialogController.promt.Hide();
+
             UserPromt = false;
         }
     }

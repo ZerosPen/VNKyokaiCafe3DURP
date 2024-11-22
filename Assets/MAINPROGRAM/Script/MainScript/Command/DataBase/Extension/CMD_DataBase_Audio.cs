@@ -1,9 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
-using UnityEditor.Media;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 namespace Commands

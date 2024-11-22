@@ -15,6 +15,8 @@ namespace Commands
         private static string[] Param_Immediate => new string[] { "-i", "-immediate" };
         private static string[] Param_Speed => new string[] { "-spd", "-speed" };
         private static string[] Param_Smooth => new string[] { "-sm", "-smooth" };
+        private static string[] Param_Anime => new string[] { "-a", "-animation" };
+        private static string[] Param_State => new string[] { "-s", "-state" };
         private static string Param_XPos => "-x";
         private static string Param_YPos => "-y";
 
@@ -38,6 +40,7 @@ namespace Commands
             baseCommand.addCommand("setcolor", new Func<string[], IEnumerator>(SetColor));
             baseCommand.addCommand("highlight", new Func<string[], IEnumerator>(HighLight));
             baseCommand.addCommand("unhighlight", new Func<string[], IEnumerator>(UnHighLight));
+            baseCommand.addCommand("animate", new Func<string[], IEnumerator>(Animation));
 
             //add character specific dataBase
             CommandDataBase spriteCommands = CommandManager.Instance.CreatSubDataBase(CommandManager.DataBase_characters_Sprite);
@@ -489,7 +492,31 @@ namespace Commands
             {
                 CommandManager.Instance.AddTerminationActionToCurrentProcess(() => { character?.UnHighLight(immadiate: true); });
                 yield return character.UnHighLight();
+
             }
+        }
+
+        public static IEnumerator Animation(string[] data)
+        {
+            string characterName = data[0];
+            Character character = CharacterManager.Instance.GetCharacter(characterName);
+            if (character == null)
+                yield break;
+
+            string animName;
+            bool state = false;
+
+            var parameters = ConvertDataToParameters(data, startIndex:1);
+
+            parameters.TryGetValue(Param_Anime, out animName);
+
+            parameters.TryGetValue(Param_Immediate, out state, defaultValue: false);
+
+            if(state)
+                character.Animate(animName, state);
+            else
+                character.Animate(animName);
+
         }
 
         #endregion
