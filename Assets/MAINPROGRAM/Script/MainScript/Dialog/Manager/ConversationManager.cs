@@ -161,6 +161,7 @@ namespace DIALOGUE
             }
         }
 
+        public bool isWaitingAutoTimer { get; private set; } = false;
         IEnumerator WaitForDialogueSegmentSingalToTrigger(DL_DialogueData.Dialogue_Segment segment)
         {
             switch(segment.startSingal)
@@ -171,7 +172,9 @@ namespace DIALOGUE
                     break;
                 case DL_DialogueData.Dialogue_Segment.StartSingal.WA:
                 case DL_DialogueData.Dialogue_Segment.StartSingal.WC:
+                    isWaitingAutoTimer = true;
                     yield return new WaitForSeconds(segment.singalDelay);
+                    isWaitingAutoTimer = false;
                     break;
                 default:
                     break;

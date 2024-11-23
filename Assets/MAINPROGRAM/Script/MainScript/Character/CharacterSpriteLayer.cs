@@ -88,7 +88,7 @@ namespace Characters
             {
                 // Optionally log that we're trying to start the alpha leveling
                 Debug.Log("Alpha leveling is already in progress.");
-                return co_LevelingAlpha; // Return existing coroutine if it's already running
+                characterManager.StopCoroutine(co_LevelingAlpha);
             }
 
             co_LevelingAlpha = characterManager.StartCoroutine(RunAlphaLeveling());

@@ -82,7 +82,7 @@ namespace Characters
         public virtual Coroutine Show(float speedMultiplier = 1f)
         {
             if (isShowing)
-                return co_Showing;
+                characterManager.StopCoroutine(co_Showing);
 
             if (isHidding)
                 characterManager.StopCoroutine(co_hiding);
@@ -94,7 +94,7 @@ namespace Characters
         public virtual Coroutine Hide(float speedMultiplier = 1f)
         {
             if (isHidding)
-                return co_hiding;
+                characterManager.StopCoroutine(co_hiding);
 
             if (isShowing)
                 characterManager.StopCoroutine(co_Showing);
@@ -197,10 +197,7 @@ namespace Characters
 
         public Coroutine HighLight(float speed = 1f, bool immadiate = false)
         {
-            if(isHighLighting)
-                return co_highLighting;
-
-            if (isUnHighLighting)
+            if(isHighLighting || isUnHighLighting)
                 characterManager.StopCoroutine(co_highLighting);
 
             HighLighted = true;
@@ -210,10 +207,7 @@ namespace Characters
         }
         public Coroutine UnHighLight(float speed = 1f, bool immadiate = false)
         {
-            if (isUnHighLighting)
-                return co_highLighting;
-
-            if (isHighLighting)
+            if (isHighLighting || isUnHighLighting)
                 characterManager.StopCoroutine(co_highLighting);
 
             HighLighted = false;

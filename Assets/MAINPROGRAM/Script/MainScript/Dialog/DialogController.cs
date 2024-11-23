@@ -59,6 +59,14 @@ namespace DIALOGUE
         public void OnUserPromt_Next()
         {
             onUserPrompt_Next?.Invoke();
+
+            if(autoReader != null && autoReader.isOn)
+                autoReader.Disable();
+        }
+
+        public void OnSystemPromt_Next()
+        {
+            onUserPrompt_Next?.Invoke();
         }
 
         public void ApplySpeakerDataToDialogContainer(string speakerName)
