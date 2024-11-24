@@ -6,10 +6,10 @@ namespace DIALOGUE.LogicalLine
 {
     public interface ILogicalLines
     {
-        string keyWord { get; }
+        string keyword { get; }
 
         bool Matches(DailogLine line);
 
-        IEnumerator Excute(DailogLine line  );
+        IEnumerator Execute(DailogLine line  );
     }
 }

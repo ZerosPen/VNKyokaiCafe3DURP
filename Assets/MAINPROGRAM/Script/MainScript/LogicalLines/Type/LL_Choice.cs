@@ -8,12 +8,12 @@ namespace DIALOGUE.LogicalLine
 {
     public class LL_Choice : ILogicalLines
     {
-        public string keyWord => "choice";
+        public string keyword => "choice";
         private const char Encapsulate_Start = '{';
         private const char Encapsulate_End = '}';
         private const char Choice_Identifier = '-';
 
-        public IEnumerator Excute(DailogLine line)
+        public IEnumerator Execute(DailogLine line) // Corrected spelling
         {
             RawChoiceData data = RipChoiceData();
 
@@ -26,8 +26,14 @@ namespace DIALOGUE.LogicalLine
 
             panel.Show(title, choiceTitle);
 
-            while(panel.isWaitingPlayerChoice)
+            while (panel.isWaitingPlayerChoice)
                 yield return null;
+
+            if (panel.lastDecision.answerIndex < 0 || panel.lastDecision.answerIndex >= choices.Count)
+            {
+                // Handle error: invalid choice index
+                yield break; // or return early
+            }
 
             Choice selectedChoice = choices[panel.lastDecision.answerIndex];
 
@@ -36,28 +42,42 @@ namespace DIALOGUE.LogicalLine
             DialogController.Instance.conversationManager.EnqueuePriority(newConversation);
         }
 
+        public bool Matches(DailogLine line)
+        {
+            return (line.hasSpeaker && line.speakerData.name.ToLower() == keyword);
+        }
+
         private RawChoiceData RipChoiceData()
         {
+            // Add null checks for safety
+            if (DialogController.Instance == null ||
+                DialogController.Instance.conversationManager == null ||
+                DialogController.Instance.conversationManager.conversation == null)
+            {
+                // Handle error
+                return new RawChoiceData { lines = new List<string>(), endingIndex = 0 };
+            }
+
             Conversation currentConversation = DialogController.Instance.conversationManager.conversation;
             int currentProgress = DialogController.Instance.conversationManager.conversationProgress;
-            int EncapsulateDepth = 0;
+            int encapsulationDepth = 0;
             RawChoiceData data = new RawChoiceData { lines = new List<string>(), endingIndex = 0 };
 
-            for(int i = 0; i < currentConversation.Count; i++)
-            {
+            for (int i = currentProgress; i < currentConversation.Count; i++)
+             {
                 string line = currentConversation.GetLines()[i];
                 data.lines.Add(line);
 
                 if (isEncapsulateStart(line))
                 {
-                    EncapsulateDepth++;
+                    encapsulationDepth++;
                     continue;
                 }
 
                 if (isEncapsulateEnd(line))
                 {
-                    EncapsulateDepth--;
-                    if(EncapsulateDepth == 0)
+                    encapsulationDepth--;
+                    if (encapsulationDepth == 0)
                     {
                         data.endingIndex = i;
                         break;
@@ -70,14 +90,14 @@ namespace DIALOGUE.LogicalLine
         private List<Choice> GetChoicesFormData(RawChoiceData data)
         {
             List<Choice> choices = new List<Choice>();
-            int encapsulateonDepth = 0;
+            int encapsulationDepth = 0;
             bool isFirstChoice = true;
 
-            Choice choice = new Choice{title = string.Empty,resultLines = new List<string>(),};
+            Choice choice = new Choice { title = string.Empty, resultLines = new List<string>(), };
 
-            foreach(var line in data.lines.Skip(1))
+            foreach (var line in data.lines.Skip(1))
             {
-                if(isChoiceStart(line) && encapsulateonDepth == 1)
+                if (isChoiceStart(line) && encapsulationDepth == 1)
                 {
                     if (!isFirstChoice)
                     {
@@ -88,42 +108,37 @@ namespace DIALOGUE.LogicalLine
                     isFirstChoice = false;
                     continue;
                 }
-                addLineToResult(line, ref choice, ref encapsulateonDepth);
+                addLineToResult(line, ref choice, ref encapsulationDepth);
             }
-            if(!choices.Contains(choice))
+            if (!choices.Any(c => c.title == choice.title)) // Check for duplicates by title
                 choices.Add(choice);
 
             return choices;
         }
 
-        private void addLineToResult(string line, ref Choice choice, ref int encapsulatedepth)
+        private void addLineToResult(string line, ref Choice choice, ref int encapsulationDepth)
         {
-            line.Trim();
+            line = line.Trim(); // Store the trimmed value
 
             if (isEncapsulateStart(line))
             {
-                if(encapsulatedepth > 0)
+                if (encapsulationDepth > 0)
                     choice.resultLines.Add(line);
-                encapsulatedepth++;
+                encapsulationDepth++;
                 return;
             }
 
             if (isEncapsulateEnd(line))
             {
-                encapsulatedepth--;
+                encapsulationDepth--;
 
-                if(encapsulatedepth == 0)
+                if (encapsulationDepth > 0)
                     choice.resultLines.Add(line);
 
                 return;
             }
 
             choice.resultLines.Add(line);
-        }
-
-        public bool Matches(DailogLine line)
-        {
-            return (line.hasSpeaker && line.speakerData.name.ToLower() == keyWord);
         }
 
         private bool isEncapsulateStart(string line) => line.Trim().StartsWith(Encapsulate_Start);

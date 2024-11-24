@@ -7,9 +7,9 @@ namespace DIALOGUE
         private List<string> lines = new List<string>();
         private int progress = 0;
 
-        public Conversation(List<string> line, int progress = 0 )
+        public Conversation(List<string> lines, int progress = 0 )
         { 
-            this.lines = line;
+            this.lines = lines;
             this.progress = progress;
         }
 

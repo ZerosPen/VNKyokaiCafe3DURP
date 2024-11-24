@@ -7,9 +7,9 @@ namespace DIALOGUE.LogicalLine
 {
     public class LL_Input : ILogicalLines
     {
-        public string keyWord => "input";
+        public string keyword => "input";
 
-        IEnumerator ILogicalLines.Excute(DailogLine line)
+        IEnumerator ILogicalLines.Execute(DailogLine line)
         {
             string title = line.dialogueData.rawData;
             InputPanel panel = InputPanel.instance;
@@ -21,7 +21,7 @@ namespace DIALOGUE.LogicalLine
 
         bool ILogicalLines.Matches(DailogLine line)
         {
-            return (line.hasSpeaker && line.speakerData.name.ToLower() == keyWord);
+            return (line.hasSpeaker && line.speakerData.name.ToLower() == keyword);
         }
     }
 }

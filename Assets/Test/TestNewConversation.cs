@@ -45,7 +45,6 @@ public class TestNewConversation : MonoBehaviour
         {
             lines = new List<string>()
             {
-                "",
                 "This is Importan NEWS!",
                 "We have the prioriry!",
                 "Hello"

@@ -34,7 +34,7 @@ namespace DIALOGUE.LogicalLine
             {
                 if (logicLine.Matches(line))
                 {
-                    logic = dialogueController.StartCoroutine(logicLine.Excute(line));
+                    logic = dialogueController.StartCoroutine(logicLine.Execute(line));
                     return true;
                 }
             }

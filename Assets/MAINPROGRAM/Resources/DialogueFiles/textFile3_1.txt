@@ -1,0 +1,6 @@
+SetLayerMedia(background "BG_kamar MC"), playambience(RainyMood), playsong(Calm2)
+enter Makira [bahagia] "Akhirnya dikamar bisa tiduran"
+Makima.SetSprite("bahagia")
+Makima.Show()
+[wait]Makima.Move(0 -spd 1), [wait]Makima.Move(1 -spd 1)
+Makima "Iya{wc 0.35} benar"

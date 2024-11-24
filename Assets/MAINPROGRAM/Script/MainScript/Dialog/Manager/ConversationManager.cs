@@ -21,6 +21,7 @@ namespace DIALOGUE
 
         public Conversation conversation => (conversationQueue.IsEmpty() ? null : conversationQueue.top);
         public int conversationProgress => (conversationQueue.IsEmpty() ? -1 : conversationQueue.top.GetProgress());
+
         private ConversationQueue conversationQueue;
 
         public ConversationManager(TextArchitech TxtArch)
@@ -46,6 +47,8 @@ namespace DIALOGUE
         {
             stopConversation();
 
+            conversationQueue.Clear();
+
             Enqueue(conversation);  
 
             process = dialogController.StartCoroutine(RunningConversation());
@@ -68,6 +71,13 @@ namespace DIALOGUE
             while(!conversationQueue.IsEmpty())
             {
                 Conversation currentConversation = conversation;
+
+                if (currentConversation.HasReacedEnd())
+                {
+                    conversationQueue.Dequeue();
+                    continue;
+                }
+
                 string rawLine = currentConversation.CurrentLine();
 
                 if (string.IsNullOrWhiteSpace(rawLine))
@@ -114,6 +124,11 @@ namespace DIALOGUE
         private void TryAdvanceConversation(Conversation convesation)
         {
             conversation.IncrementProgress();
+
+            if (conversation != conversationQueue.top)
+            {
+                return;
+            }
 
             if (conversation.HasReacedEnd())
                 conversationQueue.Dequeue();

@@ -11,6 +11,8 @@ namespace Commands
     {
         private static string[] Param_Speed => new string[] { "-spd", "-speed" };
         private static string[] Param_Immadiate => new string[] { "-i", "-immadiate" };
+        private static string[] Param_FilePath => new string[] { "-fl", "-file" ,"-filepath" };
+        private static string[] Param_Enqueue => new string[] { "-e", "-enqueue" };
 
 
         new public static void Extend(CommandDataBase dataBase)
@@ -25,6 +27,38 @@ namespace Commands
             //command for dialogue box
             dataBase.addCommand("showdb", new Func<string[], IEnumerator>(ShowDialogueBox));
             dataBase.addCommand("hidedb", new Func<string[], IEnumerator>(HideDialogueBox));
+
+            dataBase.addCommand("load", new Action<string[]>(loadNewDialogueFile));
+        }
+
+        private static void loadNewDialogueFile(string[] data)
+        {
+            string fileName = string.Empty;
+            bool enqueue = false;
+
+            var parameters = ConvertDataToParameters(data);
+
+            parameters.TryGetValue(Param_FilePath, out fileName);
+
+            parameters.TryGetValue(Param_Enqueue, out enqueue, defaultValue: false);
+
+            string filePath = FilePaths.GetPathToResource(FilePaths.resources_DialogueFiles, fileName); 
+            
+            TextAsset file = Resources.Load<TextAsset>(filePath);
+
+            if(file == null) 
+            {
+                Debug.LogWarning($"File '{filePath}' could not be loaded from dialogue files. please ensure it exists within the '{FilePaths.resources_DialogueFiles}' resources folder.");
+                return;
+            }
+
+            List<string> lines = FileManager.readTxtAsset(file, includeBlankLines: true );
+            Conversation newConversation = new Conversation(lines);
+
+            if (enqueue)
+                DialogController.Instance.conversationManager.Enqueue(newConversation);
+            else
+                DialogController.Instance.conversationManager.startConversation(newConversation);
         }
 
         private static IEnumerator Wait(string data)
