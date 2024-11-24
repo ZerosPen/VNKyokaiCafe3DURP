@@ -11,7 +11,7 @@ namespace DIALOGUE
         [SerializeField]private DialogueControllerConfigSO _config;
         public DialogueControllerConfigSO config => _config;
         public DialogContainer DialogContainer = new DialogContainer(); // Reference to DialogContainer
-        private ConversationManager conversationManager;
+        public ConversationManager conversationManager { get; private set; }
         private TextArchitech TxtArch;
         private AutoReader autoReader;
         [SerializeField] private CanvasGroup mainCanvas;
@@ -107,7 +107,13 @@ namespace DIALOGUE
             return Say(conversation);
         }
 
-        public Coroutine Say(List<string> conversation)
+        public Coroutine Say(List<string> lines)
+        {
+            Conversation conversation =  new Conversation(lines);
+            return conversationManager.startConversation(conversation);
+        }
+
+        public Coroutine Say(Conversation conversation)
         {
             return conversationManager.startConversation(conversation);
         }

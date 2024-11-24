@@ -9,6 +9,13 @@ public class ChoicePanel : MonoBehaviour
     //intance this script
     public static ChoicePanel instance { get; private set; }
 
+    private const float Button_Min_Width = 50;
+    private const float Button_Max_Width = 1000;
+    private const float Button_Width_Padding = 25;
+
+    private const float Button_Height_PerLine = 50;
+    private const float Button_Height_Padding = 20;
+
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private TextMeshProUGUI titletext;
     [SerializeField] private GameObject choiceButtonPrefab;
@@ -25,14 +32,16 @@ public class ChoicePanel : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
+        cg = new CanvasGroupController(this, canvasGroup);
+        cg.alpha = 0;
+        cg.SetInteractableState(false);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        cg = new CanvasGroupController(this, canvasGroup);
-        cg.alpha = 0;
-        cg.SetInteractableState(false);
+        
     }
 
     public void Show(string question, string[] choices)
@@ -45,13 +54,13 @@ public class ChoicePanel : MonoBehaviour
         cg.SetInteractableState(active: true);
 
         titletext.text = question;
-        GenerateChoices(choices);
+        StartCoroutine(GenerateChoices(choices));
        
     }
 
-    private void GenerateChoices(string[] choices)
+    private IEnumerator GenerateChoices(string[] choices)
     {
-        //float maxWidth = 0;
+        float maxWidth = 0;
 
         for(int i  = 0; i < choices.Length; i++)
         {
@@ -73,12 +82,38 @@ public class ChoicePanel : MonoBehaviour
 
                 Buttons.Add(choiceButton);
             }
+
+            choiceButton.button.onClick.RemoveAllListeners();
+            int buttonIndex = i;
+            choiceButton.button.onClick.AddListener(() => AcceptAnswer(buttonIndex));
+            choiceButton.title.text = choices[i];
+
+            float buttonWidth = Mathf.Clamp(Button_Width_Padding + choiceButton.title.preferredWidth, Button_Min_Width, Button_Max_Width);
+            maxWidth = Mathf.Max(maxWidth, buttonWidth);
+        }
+        foreach (var button in Buttons)
+        {
+            button.layout.preferredWidth = maxWidth;
+        }
+
+        for(int i = 0; 9 < Buttons.Count; i++)
+        {
+            bool show = i < choices.Length;
+            Buttons[i].button.gameObject.SetActive(show);
+        }
+        yield return new WaitForEndOfFrame();
+
+        foreach (var button in Buttons)
+        {
+            int lines = button.title.textInfo.lineCount;
+            button.layout.preferredWidth = Button_Height_Padding + (Button_Height_PerLine * lines);
         }
     }
 
     public void Hide()
     {
         cg.Hide();
+        cg.SetInteractableState(false);
     }
 
     private void AcceptAnswer(int index)
