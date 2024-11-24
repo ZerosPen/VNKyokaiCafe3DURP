@@ -1,6 +1,0 @@
-Narrator "And So begin the adventures of <mainChar>"
-<mainChar> "my name is <mainChar>. what time is it?"
-
-narrator "The time is <time> and you are only level <playerLevel>"
-
-<mainChar> "Fuggedaboutit! <tempVal>"

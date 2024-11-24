@@ -18,6 +18,7 @@ public class CanvasGroupController
     public bool isFading => isShowing || isHiding;
 
     public bool isVisible => co_showing != null || rootCG.alpha < 0;
+    public float alpha { get { return rootCG.alpha; } set { rootCG.alpha = value; } }
 
     public CanvasGroupController(MonoBehaviour owner, CanvasGroup rootCG)
     {
@@ -70,5 +71,11 @@ public class CanvasGroupController
 
         co_hiding = null;
         co_showing = null;
+    }
+
+    public void SetInteractableState(bool active)
+    {
+        rootCG.interactable = active;
+        rootCG.blocksRaycasts = active;
     }
 }

@@ -26,7 +26,7 @@ namespace TESTING
             }
 
             // Read lines from the TextAsset
-            List<string> lines = FileManager.readTxtAsset(FileToRead.name); // Ensure the path is correct
+            List<string> lines = FileManager.readTxtAsset($"DialogueFiles/{FileToRead.name}"); // Ensure the path is correct
             if (lines == null)
             {
                 Debug.LogError("Failed to read lines from the file.");

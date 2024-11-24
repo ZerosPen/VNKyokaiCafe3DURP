@@ -1,0 +1,10 @@
+Narrator "What is your name son?"
+
+input "Input your name in here"
+
+Narrator "And So begin the adventures of <input>"
+<mainChar> "my name is <mainChar>. what time is it?"
+
+narrator "The time is <time> and you are only level <playerLevel>"
+
+<mainChar> "Fuggedaboutit! <tempVal>"

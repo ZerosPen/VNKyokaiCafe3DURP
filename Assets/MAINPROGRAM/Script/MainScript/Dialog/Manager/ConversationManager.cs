@@ -1,5 +1,6 @@
 using Characters;
 using Commands;
+using DIALOGUE.LogicalLine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,12 +17,15 @@ namespace DIALOGUE
         private bool UserPromt = false;
 
         private TagManager tagManager;
+        private LogicalLineManager logicalLineManager;
+
         public ConversationManager(TextArchitech TxtArch)
         {
             this.TxtArch = TxtArch;
             dialogController.onUserPrompt_Next += OnUserPromt_Next;
 
             tagManager = new TagManager();
+            logicalLineManager = new LogicalLineManager();
         }
 
         private void OnUserPromt_Next()
@@ -55,25 +59,33 @@ namespace DIALOGUE
                 if (string.IsNullOrWhiteSpace(conversation[i]))
                     continue;
                 DailogLine line = DailogParser.Parse(conversation[i]);
-                //show dialogue
-                if (line.hasDialogue)
-                {
-                    yield return Line_RunDialogue(line);
-                }
 
-                // shoew commmand
-                if (line.hasCommands)
+                if(logicalLineManager.TryGetLogic(line, out Coroutine logic))
                 {
-                    yield return Line_RunCommands(line);
+                    yield return logic;
                 }
-
-                //wait for user input if dialogue has  in this line
-                if(line.hasDialogue)
+                else
                 {
-                    //wiat for userInput
-                    yield return WaitForUserInput();
-                            
-                    CommandManager.Instance.StopAllProcesses();
+                    //show dialogue
+                    if (line.hasDialogue)
+                    {
+                        yield return Line_RunDialogue(line);
+                    }
+
+                    // shoew commmand
+                    if (line.hasCommands)
+                    {
+                        yield return Line_RunCommands(line);
+                    }
+
+                    //wait for user input if dialogue has  in this line
+                    if (line.hasDialogue)
+                    {
+                        //wiat for userInput
+                        yield return WaitForUserInput();
+
+                        CommandManager.Instance.StopAllProcesses();
+                    }
                 }
             }
         }

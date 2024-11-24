@@ -47,7 +47,7 @@ namespace Commands
             spriteCommands.addCommand("setsprite", new Func<string[], IEnumerator>(SetSprite));
         }
 
-        #region Global Commands
+            #region Global Commands
         public static void CreatCharacter(string[] data)
         {
             string characterName = data[0];
@@ -510,7 +510,7 @@ namespace Commands
 
             parameters.TryGetValue(Param_Anime, out animName);
 
-            parameters.TryGetValue(Param_Immediate, out state, defaultValue: false);
+            parameters.TryGetValue(Param_State, out state, defaultValue: false);
 
             if(state)
                 character.Animate(animName, state);

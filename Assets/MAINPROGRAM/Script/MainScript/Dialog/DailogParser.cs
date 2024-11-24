@@ -19,7 +19,7 @@ namespace DIALOGUE
 
             Debug.Log($"Speaker: '{speaker}'\nDialogue: '{dialogue}'\nCommands: '{commands}'");
 
-            return new DailogLine(speaker, dialogue, commands);
+            return new DailogLine(rawLine, speaker, dialogue, commands);
         }
 
         private static (string, string, string) RipContent(string rawLine)

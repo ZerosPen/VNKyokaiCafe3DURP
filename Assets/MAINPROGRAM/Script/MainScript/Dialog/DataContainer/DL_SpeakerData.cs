@@ -7,6 +7,7 @@ namespace DIALOGUE
 {
     public class DL_SpeakerData
     {
+        public string rawData { get; private set; } = string.Empty;
         public string name, castName;
 
         public string displayName => isCastingName ?  castName : name;
@@ -42,6 +43,7 @@ namespace DIALOGUE
 
         public DL_SpeakerData(string rawSpeaker)
         {
+            rawData = rawSpeaker;
             rawSpeaker = ProcessKeyWord(rawSpeaker);
 
             string pattern = $"{NameCast_Id}|{PositionCast_Id}|{ExpressionCast_Id.Insert(ExpressionCast_Id.Length - 1, @"\")}";
