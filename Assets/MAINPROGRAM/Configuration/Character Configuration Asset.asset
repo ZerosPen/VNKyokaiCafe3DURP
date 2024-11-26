@@ -20,6 +20,10 @@ MonoBehaviour:
     dialogueColor: {r: 1, g: 1, b: 1, a: 1}
     nameFont: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
     dialogueFont: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    FontNameScale: 1
+    DialogueFontScale: 1
+    sprites:
+      _serializedList: []
   - name: Raelin
     alias: r
     CharType: 2
@@ -27,6 +31,10 @@ MonoBehaviour:
     dialogueColor: {r: 0.7924528, g: 0.45229617, b: 0.45229617, a: 1}
     nameFont: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
     dialogueFont: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+    FontNameScale: 1
+    DialogueFontScale: 1
+    sprites:
+      _serializedList: []
   - name: Generic
     alias: g
     CharType: 2
@@ -34,6 +42,10 @@ MonoBehaviour:
     dialogueColor: {r: 1, g: 1, b: 1, a: 1}
     nameFont: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
     dialogueFont: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+    FontNameScale: 1
+    DialogueFontScale: 1
+    sprites:
+      _serializedList: []
   - name: Ito Yoreki
     alias: ito
     CharType: 1
@@ -41,6 +53,10 @@ MonoBehaviour:
     dialogueColor: {r: 0.1882353, g: 0.1882353, b: 0.1882353, a: 1}
     nameFont: {fileID: 11400000, guid: 75714946d80681d43963eb2d5398db2f, type: 2}
     dialogueFont: {fileID: 11400000, guid: 3e7edacc55134294295894617ab4336e, type: 2}
+    FontNameScale: 1
+    DialogueFontScale: 1
+    sprites:
+      _serializedList: []
   - name: Makima
     alias: makima
     CharType: 1
@@ -48,6 +64,12 @@ MonoBehaviour:
     dialogueColor: {r: 0.1882353, g: 0.1882353, b: 0.1882353, a: 1}
     nameFont: {fileID: 11400000, guid: 75714946d80681d43963eb2d5398db2f, type: 2}
     dialogueFont: {fileID: 11400000, guid: 3e7edacc55134294295894617ab4336e, type: 2}
+    FontNameScale: 1
+    DialogueFontScale: 1
+    sprites:
+      _serializedList:
+      - Key: 
+        Value: {fileID: 0}
   - name: Hana Janner
     alias: Hana
     CharType: 1
@@ -55,6 +77,10 @@ MonoBehaviour:
     dialogueColor: {r: 0.1882353, g: 0.1882353, b: 0.1882353, a: 1}
     nameFont: {fileID: 11400000, guid: 75714946d80681d43963eb2d5398db2f, type: 2}
     dialogueFont: {fileID: 11400000, guid: 3e7edacc55134294295894617ab4336e, type: 2}
+    FontNameScale: 1
+    DialogueFontScale: 1
+    sprites:
+      _serializedList: []
   - name: Makira
     alias: makira
     CharType: 1
@@ -62,3 +88,18 @@ MonoBehaviour:
     dialogueColor: {r: 0.1882353, g: 0.1882353, b: 0.1882353, a: 1}
     nameFont: {fileID: 11400000, guid: 75714946d80681d43963eb2d5398db2f, type: 2}
     dialogueFont: {fileID: 11400000, guid: 3e7edacc55134294295894617ab4336e, type: 2}
+    FontNameScale: 1
+    DialogueFontScale: 1
+    sprites:
+      _serializedList: []
+  - name: MC
+    alias: mc
+    CharType: 0
+    nameColor: {r: 0.08627451, g: 0.08627451, b: 0.08627451, a: 1}
+    dialogueColor: {r: 0.1882353, g: 0.1882353, b: 0.1882353, a: 1}
+    nameFont: {fileID: 11400000, guid: 75714946d80681d43963eb2d5398db2f, type: 2}
+    dialogueFont: {fileID: 11400000, guid: 3e7edacc55134294295894617ab4336e, type: 2}
+    FontNameScale: 0
+    DialogueFontScale: 1
+    sprites:
+      _serializedList: []

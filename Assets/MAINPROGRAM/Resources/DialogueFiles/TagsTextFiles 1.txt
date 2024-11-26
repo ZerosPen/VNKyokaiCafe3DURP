@@ -1,1 +1,1 @@
-$money = 50
+$DB_Default.money = 50

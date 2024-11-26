@@ -1,0 +1,26 @@
+setLayerMedia(background "BG_kamar MC (adegan pembuka)"), creatCharacter("MC")
+narrator "Pada suatu malam."
+MC "Huft...{wc 0.75} lagi-lagi mimpi yang sama."
+"Ah!{wc 0.6}Sudah lebih baik."
+"Huh..."
+"..."
+"Aku rindu kalian..."
+
+HideDB(-spd 1)
+wait(0.75)
+ClearLayerMedia(background), wait(1)
+wait(1)
+
+setLayerMedia(background "BG_kamar MC (adegan penutup)")
+narrator "Pada pagi hari"
+MC "Ah!{wc 0.6}Udah pagi aja."
+"Aku harus bersiap-siap!"
+"Mandi lalu sarapan."
+"Huft...{wc 1}Hari yang sama setiap saat."
+"Lebih baik aku berangkat sekarang aja deh."
+
+HideDB(-spd 1)
+wait(0.75)
+ClearLayerMedia(background), wait(1)
+wait(1)
+Load(SecondChapter)
