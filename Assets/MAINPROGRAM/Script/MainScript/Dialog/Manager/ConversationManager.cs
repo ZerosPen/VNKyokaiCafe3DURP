@@ -16,7 +16,6 @@ namespace DIALOGUE
         public  TextArchitech TxtArch = null;
         private bool UserPromt = false;
 
-        private TagManager tagManager;
         private LogicalLineManager logicalLineManager;
 
         public Conversation conversation => (conversationQueue.IsEmpty() ? null : conversationQueue.top);
@@ -29,7 +28,6 @@ namespace DIALOGUE
             this.TxtArch = TxtArch;
             dialogController.onUserPrompt_Next += OnUserPromt_Next;
 
-            tagManager = new TagManager();
             logicalLineManager = new LogicalLineManager();
 
             conversationQueue = new ConversationQueue();
@@ -162,7 +160,7 @@ namespace DIALOGUE
             }
 
             // Display the speaker's name in the dialogue
-            dialogController.showSpeakerName(tagManager.Inject (speakerData.displayName));
+            dialogController.showSpeakerName(TagManager.Inject (speakerData.displayName));
 
             DialogController.Instance.ApplySpeakerDataToDialogContainer(speakerData.name);
 
@@ -241,7 +239,7 @@ namespace DIALOGUE
         IEnumerator BuildDialogue(string dailogue, bool Append = false)
         {
 
-            dailogue = tagManager.Inject(dailogue);
+            dailogue = TagManager.Inject(dailogue);
 
             if (!Append)
                 TxtArch.Build(dailogue);

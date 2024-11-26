@@ -20,14 +20,14 @@ public class VariabelStoreTest : MonoBehaviour
         VariableStore.CreateVariable("DB_Links.l_str", var_str, () => var_str, value => var_str = value);
 
 
-        VariableStore.CreateDataBase("DB_Num");
+        VariableStore.CreateDataBase("DB_Numbers");
         VariableStore.CreateDataBase("DB_Bool");
         VariableStore.CreateDataBase("DB69");
 
-        VariableStore.CreateVariable("DB_Num.num1", 1);
-        VariableStore.CreateVariable("DB_Num.num5", 5);
+        VariableStore.CreateVariable("DB_Numbers.num1", 1);
+        VariableStore.CreateVariable("DB_Numbers.num5", 5);
         VariableStore.CreateVariable("DB_Bool.lightOn", true);
-        VariableStore.CreateVariable("DB_Num.float", 7.6);
+        VariableStore.CreateVariable("DB_Numbers.float", 7.6);
         VariableStore.CreateVariable("str1", "Hello ");
         VariableStore.CreateVariable("str2", "World");
 

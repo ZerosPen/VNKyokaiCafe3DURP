@@ -2664,7 +2664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fea5e657b8efd68438172b18d0839e1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FileToRead: {fileID: 4900000, guid: 35495796e9a637d49a051cd052efd9a9, type: 3}
+  FileToRead: {fileID: 4900000, guid: c0a0d9c849fb1af40aaabd00ea6a8f95, type: 3}
 --- !u!114 &891244185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4489,7 +4489,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.085, y: 0.3033386}
   m_AnchorMax: {x: 0.23900001, y: 0.34}
-  m_AnchoredPosition: {x: -54.47998, y: -65.13083}
+  m_AnchoredPosition: {x: -54.480103, y: -65.13083}
   m_SizeDelta: {x: 50.26703, y: 15.251652}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1733073899

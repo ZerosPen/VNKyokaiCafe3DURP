@@ -8,6 +8,8 @@ public class VariableStore
 {
     private const string Default_DataBase_Name = "Default";
     public const char DataBase_Variable_Relation_Id = '.';
+    public static readonly string Regex_Variable_Id = @"[!]?\$[a-zA-Z0-9_.]+";
+    public static char Variable_Id = '$';
 
     public class DataBase 
     { 
@@ -127,6 +129,15 @@ public class VariableStore
         string variableName = parts.Length > 1 ? parts[1] : parts[0];
 
         return (parts, db, variableName);
+    }
+
+    public static bool HasVariable(string name)
+    {
+        string[] parts = name.Split(DataBase_Variable_Relation_Id);
+        DataBase db = parts.Length > 1 ? GetDataBase(parts[0]) : DefaultDataBase;
+        string variableName = parts.Length > 1 ? parts[1] : parts[0];
+        
+        return db.Variables.ContainsKey(variableName);
     }
 
     public static void PrintAllDataBase()
