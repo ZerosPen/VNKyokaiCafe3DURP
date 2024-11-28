@@ -1,0 +1,6 @@
+SetLayerMedia(background "BG_rumah waiter"), playambience(RainyMood), playsong(Calm)
+Makima.SetSprite("Telling")
+Makima.Show(), Makira.Show()
+[wait]Makira.Move(0.5 -spd 1),[wait]Makima.Move(1 -spd 1)
+[muda_sedih] "Diruang tamu kita ngapain?"
+Makima "YA...{wc 1} bebas aja aku mah"

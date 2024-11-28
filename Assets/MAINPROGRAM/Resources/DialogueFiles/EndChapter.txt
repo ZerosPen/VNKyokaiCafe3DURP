@@ -1,0 +1,22 @@
+Narrator "Arc MC Dimulai"
+
+wait(1)
+
+SetLayerMedia(background "BG_kamar MC (adegan penutup)")
+SetLayerMedia(background 1 "Asset_foto keluarga (adegan penutup)")
+
+MC "melihat ke arah bingkai di meja dekat dapur, mengamati setiap orang disitu. Ada ayah, ibu, dan kakaknya yang sangat dia rindukan."
+"berjalan mendekat dan mengangkat bingkai itu, air mata mulai menetes membasahi wajahnya.{wc 1}mendekatkan bingkai itu ke dadanya, memeluknya seat mungkin, merasakan satu-satunya memori tercetak yang ada."
+"Berharap ada sedikit kehangatan yang tersisa."
+
+"mama, papa, dan kakak...{wc 1}Aku kangen sekali..."
+
+narrator "Masih sangat teringat jelas ketika dia pertama kali mendapat kabar duka itu, 4 tahun lalu, hanya tiga minggu sebelum dirinya genap menginjak dua puluh tahun."
+"Pada waktu MC sedang kesal dengan kakaknya akan suatu hal sehingga dia tidak ikut pergi bersama mereka, tidak menyangka hal itu berlanjut ke petaka."
+"Kesedihan MC tidak bisa berlama-lama karena dia harus disibukkan dengan Cafe peninggalan orang tuanya."
+"MC merasa bahwa cafe ini adalah peninggalan dan harapan terakhir dari orang tua dan kakaknya.{wc 1}Cafe ini dibuat dengan tujuan untuk membantu orang-orang bisa merasakan "rumah" yang selalu dirindukan."
+"MC merasa senang karena dia bisa membagikan kehangatan kepada orang-orang di sekitarnya. Kepada pelanggan, dan terutama karyawannya."
+MC ""Kalian pasti bangga dengan semua yang telah aku lakukan saat kalian tidak ada, terima kasih ma, pa, kak, sampai bertemu lagi."
+
+Narrator "Arc MC Selesai"
+"Game telah selasai{wc 1}jika ingin keluar dari game klik config lalu klik Exit Game jika ingin mengulang Game klik Return lalu Klik Start Game"

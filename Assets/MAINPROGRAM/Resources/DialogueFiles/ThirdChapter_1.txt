@@ -1,0 +1,24 @@
+MC "Menemani Hana sambil menceritakan banyak hal lucu kepadanya."
+Hana.Show(), Hana.Move(1)
+
+SetLayerMedia(background "BG_depan rumah barista")
+
+Hana "Tersenyum."
+"Terima kasih."
+
+MC "Untuk?"
+Hana "Telah menemaniku disaat seperti ini."
+MC "Membalas senyum Hana."
+"Tidak apa! Aku menganggap kamu sebagai temanku sendiri!"
+Hana "Baiklah, sampai sini saja."
+"Aku akan masuk rumahku. Terima kasih untuk hari ini."
+MC "Sama-sama! Aku senang bisa membantu kamu."
+
+Hana.Hide()
+
+narrator "ARC TOMBOY SELESAI"
+HideDB(-spd 1)
+wait(0.75)
+ClearLayerMedia(background), wait(1)
+wait(1)
+Load(FourChapter)

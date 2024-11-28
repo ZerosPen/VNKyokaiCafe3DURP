@@ -1,0 +1,50 @@
+SetLayerMedia(background BG_pertokoan), creatcharacter("Hana as Hana Janner"), creatCharacter("MC")
+narrator "Beberapa hari setelah konflik Makira dan Makima berlalu."
+
+MC "Ah~ jalan di hari sabtu memang enak!"
+"Aku udah beli cookies sama susu buat nemenin aku nonton film malem ini!"
+"Melihat sosok yang tidak asing di seberang jalan."
+Eh? Itu kan Hana!
+Hana.Show()
+"Menyadari bahwa penampilan Hana terlihat berantakan dan ada luka."
+"Penampilan ia...{wc 1.5} Apa ia habis bertengkar?"
+"HANAAA!"
+
+Hana [berantakan_2] "Eh?"
+
+MC "Menyeberangi jalan untuk bertemu Hana."
+"Kamu habis ngapain?"
+
+Hana [berantakan_1] "Aku habis membantu ibu membeli bumbu masakan."
+
+MC "Lalu, kenapa kamu terluka?{c} Rambut kamu juga berantakan."
+
+Hana "Aku terjatuh tadi hehe."
+
+MC "Aku bisa membedakan luka jatuh dan bertengkar bagaimana."
+
+Hana [berantakan_2] "Berhenti berakting dan mengeluarkan nafas."
+"Huft...{wa 1} Baiklah."
+"Aku sebenarnya habis berantem dengan ayahku."
+
+MC "Eh?{wc 1} kenapa?"
+
+Hana "Dia habis melukai hati ibuku...{wc 1} Aku ga bisa menerima ibuku dilakukan seperti ini!"
+"Menahan emosinya yang kembali lagi."
+"Ia selalu kembali hanya untuk merebutku dari ibu.{wc 1} Aku muak dengan ayahku sendiri."
+
+MC "A-{wa 1} aku minta maaf..."
+
+Hana "tidak apa - apa."
+
+MC "Mau jalan bersama?{c} Aku bisa menemani kamu kembali ke rumah mu."
+
+Hana "Huft. . . Baiklah"
+
+Hana.Move(2), Hana.Hide()
+
+HideDB(-spd 1)
+wait(0.75)
+ClearLayerMedia(background), wait(1)
+wait(1)
+load(ThirdChapter_1)

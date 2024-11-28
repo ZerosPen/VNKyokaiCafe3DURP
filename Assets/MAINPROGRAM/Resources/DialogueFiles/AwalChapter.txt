@@ -2,6 +2,8 @@ setLayerMedia(background "BG_kamar MC (adegan pembuka)"), creatCharacter("MC")
 narrator "Pada suatu malam."
 MC "Huft...{wc 0.75} lagi-lagi mimpi yang sama."
 "Ah!{wc 0.6}Sudah lebih baik."
+setLayerMedia(background 1 "Asset_foto keluarga (adegan pembuka)")
+[wait]ClearLayerMedia(background 1)
 "Huh..."
 "..."
 "Aku rindu kalian..."

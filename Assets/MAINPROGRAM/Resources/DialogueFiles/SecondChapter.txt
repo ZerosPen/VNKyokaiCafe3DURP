@@ -68,26 +68,27 @@ wait(0.75)
 ClearLayerMedia(background), wait(1)
 wait(1)
 
+creatcharacter("Makira"), creatcharacter("Makima")
 setLayerMedia(background "BG_rumah waiter")
 Makima.SetPosition(0), Makira.Move(1 -spd 2)
-Makima.SetSprite(Makima.GetSprite(Telling)), Makira.SetSprite(Makira.GetSprite(Telling))
 Makima.Show(), Makira.Show()
 
-Makima "Makira."
-Makira "Iya kak?"
+Makima [Telling] "Makira."
+Makira [bahagia_casual] "Iya kak?"
 Makima "Aku.. Aku minta maaf."
 Makira "Hah? Kenapa?"
-Makima "Kak manager udah menunjukkan rekaman pembicaraan kamu dengannya kemarin."
-Makira "?!!"
-Makima "Aku selama ini egois. Aku minta maaf."
-Makira "Tidak kak.. Aku tau kakak cuman mau aku lebih bisa mandiri dalam menjaga diri."
+Makima [] "Kak manager udah menunjukkan rekaman pembicaraan kamu dengannya kemarin."
+Makira [terdiam] "?!!"
+Makima [berkaca] "Aku selama ini egois. Aku minta maaf."
+Makira [berkaca_Casual] "Tidak kak..{wc 1} Aku tau kakak cuman mau aku lebih bisa mandiri dalam menjaga diri."
 Makima "Meskipun begitu, cara kakak tetaplah salah. {wc 1}Tolong terima perminta maafan kakak ini."
-Makira "Aku akan selalu maafin kakak. Aku ga pernah membenci kakak hanya karena kakak mengomeli aku."
-Makima "Memeluk Makira."
-Makira "Terkejut dengan apa yang kakaknya lakukan lalu memeluk kakaknya setelah beberapa saat."
-Makima "Terima kasih sudah menerima kakak apa adanya."
+Makira [bahagia_casual] "Aku akan selalu maafin kakak. Aku ga pernah membenci kakak hanya karena kakak mengomeli aku."
+Makima [] "Memeluk Makira."
+Makira [] "Terkejut dengan apa yang kakaknya lakukan lalu memeluk kakaknya setelah beberapa saat."
+Makima [bahagia] "Terima kasih sudah menerima kakak apa adanya."
 
 HideDB(-spd 1), Makira.Hide(-spd 1), Makima.Hide(-spd 1)
 wait(0.75)
 ClearLayerMedia(background), wait(1)
 wait(1)
+Load(ThirdChapter)

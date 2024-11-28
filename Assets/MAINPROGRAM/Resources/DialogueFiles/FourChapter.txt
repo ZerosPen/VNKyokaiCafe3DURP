@@ -1,0 +1,68 @@
+creatcharacter("Yoreki as Ito Yoreki"), creatcharacter("MC"), creatcharacter("??? as Mama")
+SetLayerMedia(background "BG_dalam cafe")
+
+narrator "Beberapa hari minggu setelah masalah Hana selesai"
+
+Yoreki.Move(-x 0.2)
+wait(1)
+[wait]Yoreki.Show(), [wait]???.Show()
+
+Yoreki "Mama sama sekali tidak mengerti saya!"
+??? "Kamu saja, sebagai orang tua, aku sudah kasih kamu jalan yang terbaik. Tapi kalau kamu tidak mau, yasudah,{wc 1}jangan datang kepadaku nanti kalau kau susah."
+
+MC "Eh?{wc 1} Ada suara apa itu barusan?"
+
+"Melihat Yoreki dengan sesosok wanita yang memancarkan aura kuat dan sudah terlihat berumur."
+???.Move(2), ???.Hide()
+"Wanita itu pergi dari cafe, meninggalkan Yoreki yang terdiam dan merenung."
+
+MC "MC mendatangi chef."
+Yoreki.Move(0.5)
+wait(1)
+MC "Siapa orang tadi?"
+Yoreki "Dia mama saya."
+MC "Ada masalah apa kamu dengan mama kamu?"
+Yoreki "Menghela nafas."
+"Dia mau saya melepaskan karir chef saya dan melanjutkan bisnis keluarga...{wc 1}Tapi saya tidak mau, saya lebih suka berada di dapur."
+"Dapur adalah tempat saya menyalurkan rasa cinta terhadap kuliner.{wc 1}Saya bisa membuat seni dengan masakan saya."
+"Kebahagiaan saya ketika  memasak tidak akan bisa dikalahkan oleh apapun.{wc 1}Jika saya harus melanjutkan bisnis"
+"itu artinya melepaskan semua yang saya punya sekarang, dan menjalani hidup yang lebih hampa tanpa ada warna{wc 1}setiap harinya saya akan merasa tercekik dengan kerjaan yang monoton dan menumpuk, tidak ada rasa cinta."
+"Saya adalah kepunyaan dapur. Saya sudah menjadi bagian dari dapur, terutama dapur di cafe ini."
+
+MC "MC terkagum dengan ketekunan Yoreki"
+"Aku bisa melihat passion kamu terhadal masakan, dapur kami membutuhkanmu.{wc 1}Kamu harus bisa buktikan kepada mamamu bahwa kamu mampu dan akan terus maju dengan bakat dan passion yang kamu punya.
+"Akan ada lomba membuat dan menghias kue di luar kota bulan depan.{wc 1} Ambillah jatah cuti dan ikutlah!"
+
+narrator "Yoreki merasa terharu dengan kebaikan MC dan berterima kasih."
+
+Yoreki.Hide()
+HideDB(), wait(1)
+wait(2)
+SetLayerMedia(background 1 "CG_kemenangan chef")
+
+narrator "MC mengambil hp nya dan melihat adanya notifikasi baru, dia tersenyum"
+MC "MC: Yes, aku selalu percaya kamu bisa!"
+[wait]ClearLayerMedia(background 1)
+
+wait(1.5)
+	
+SetLayerMedia(background "BG_front cafe")
+SetLayerMedia(background 1 "Asset_unknown caller")
+creatcharacter("Ibu Yoreki as Mama")
+
+MC "Halo, selamat sore."
+??? "Halo, apakah ini dengan MC?"
+MC "Benar, ada yang bisa dibantu?"
+Ibu Yoreki "Saya Ibu Yoreki, saya mau berterima kasih kepada kamu, karena kamu dia bisa meraih penghargaan besar.{wc 1}Awalnya aku memang takut dia tidak akan sukses hanya dengan menjadi chef, tapi sekarang aku sudah percaya."
+"Anakku tidak hanya punya bakat, dia punya rasa cinta yang tidak tergantikan.{wc 1}Aku akan selalu mendukung dia."
+"Terima kasih karena kamu telah memberikan dia kesempatan untuk berkarya."
+MC "Aku hanya melakukan yang bisa kulakukan{wc 1}sebaiknya katakan sendiri pada anakmu betapa bangga kau padanya."
+Ibu Yoreki "Tentu saja, terima kasih MC."
+
+narrator "ARC CHEF SELESAI"
+HideDB(-spd 1)
+wait(0.75)
+ClearLayerMedia(background 1), wait(1)
+ClearLayerMedia(background), wait(1)
+wait(1)
+Load(EndChapter)
